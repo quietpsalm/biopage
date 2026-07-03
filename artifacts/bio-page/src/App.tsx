@@ -185,11 +185,28 @@ function ParticleCanvas() {
 }
 
 function YouTubeAudio({ videoId }: { videoId: string }) {
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    const start = () => {
+      setActive(true);
+      document.removeEventListener("touchstart", start);
+      document.removeEventListener("click", start);
+    };
+    document.addEventListener("touchstart", start, { once: true });
+    document.addEventListener("click", start, { once: true });
+    return () => {
+      document.removeEventListener("touchstart", start);
+      document.removeEventListener("click", start);
+    };
+  }, []);
+
   const src =
     `https://www.youtube-nocookie.com/embed/${videoId}` +
     `?autoplay=1&loop=1&playlist=${videoId}` +
     `&controls=0&disablekb=1&fs=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3`;
 
+  if (!active) return null;
   return (
     <iframe
       src={src}
