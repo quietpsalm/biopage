@@ -223,7 +223,7 @@ export default function App() {
               color: "rgba(255,255,255,0.38)",
               fontSize: "clamp(12px, 2.5vw, 14px)",
               letterSpacing: "0.18em",
-              fontFamily: "'QuorthonBlack', sans-serif",
+              fontFamily: "'FallingSkyBlk', sans-serif",
               textTransform: "uppercase",
             }}
           >
