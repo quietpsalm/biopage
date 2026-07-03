@@ -262,12 +262,12 @@ export default function App() {
       >
         {/* Avatar */}
         <div style={{ position: "relative", width: 190, height: 190 }}>
-          {/* Outer red spinning ring */}
+          {/* Outer red pulsing glow */}
           <div style={{
             position: "absolute", inset: -6, borderRadius: "18px",
-            background: "conic-gradient(from 180deg, #ff000020, #ff0000dd, #ff000020)",
-            filter: "blur(3px)",
-            animation: "spin 6s linear infinite, redPulse 1.6s ease-in-out infinite",
+            background: "transparent",
+            border: "2px solid #cc0000",
+            animation: "redPulse 1.6s ease-in-out infinite",
           }} />
           {/* Static dark border ring */}
           <div style={{
