@@ -264,14 +264,14 @@ export default function App() {
         <div style={{ position: "relative", width: 190, height: 190 }}>
           {/* Outer red pulsing glow */}
           <div style={{
-            position: "absolute", inset: -6, borderRadius: "18px",
+            position: "absolute", inset: -6, borderRadius: "50%",
             background: "transparent",
             border: "2px solid #cc0000",
             animation: "redPulse 1.6s ease-in-out infinite",
           }} />
           {/* Static dark border ring */}
           <div style={{
-            position: "absolute", inset: -2, borderRadius: "14px",
+            position: "absolute", inset: -2, borderRadius: "50%",
             border: "1px solid rgba(255,0,0,0.2)",
             boxShadow: "0 0 30px rgba(255,0,0,0.15), inset 0 0 30px rgba(0,0,0,0.6)",
           }} />
@@ -281,7 +281,7 @@ export default function App() {
             onLoad={() => setImgLoaded(true)}
             style={{
               position: "relative", width: 190, height: 190,
-              borderRadius: "12px", objectFit: "cover",
+              borderRadius: "50%", objectFit: "cover",
               border: "2px solid rgba(255,0,0,0.18)", display: "block",
               opacity: imgLoaded ? 1 : 0, transition: "opacity 0.7s ease",
               boxShadow: "0 0 60px rgba(255,0,0,0.12), 0 0 120px rgba(255,0,0,0.05)",
