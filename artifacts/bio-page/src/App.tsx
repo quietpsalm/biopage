@@ -3,9 +3,16 @@ import { useEffect, useRef, useState } from "react";
 const TELEGRAM_URL = "https://t.me/username";
 const IMAGE_URL = "https://i.ibb.co/cKQWdhXD/IMG-6883.png";
 
-// Paste a YouTube video URL here to use it as a background (leave empty for no video)
+// Paste a YouTube video URL here to play audio on page load (leave empty for none)
 // Example: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 const YOUTUBE_URL = "";
+
+// Browser tab title
+const PAGE_TITLE = "your name";
+
+// Favicon — paste any image URL, or use a file you've dropped into public/ (e.g. "/favicon.png")
+// Leave empty to keep the default
+const FAVICON_URL = "";
 
 function getYouTubeId(url: string): string | null {
   if (!url) return null;
@@ -131,6 +138,17 @@ export default function App() {
       setTimeout(() => setCopied(false), 1800);
     });
   }
+
+  useEffect(() => {
+    if (PAGE_TITLE) document.title = PAGE_TITLE;
+    if (FAVICON_URL) {
+      const link =
+        (document.querySelector("link[rel~='icon']") as HTMLLinkElement) ||
+        Object.assign(document.createElement("link"), { rel: "icon" });
+      link.href = FAVICON_URL;
+      document.head.appendChild(link);
+    }
+  }, []);
 
   const videoId = getYouTubeId(YOUTUBE_URL);
 
