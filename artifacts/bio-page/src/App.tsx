@@ -247,10 +247,10 @@ export default function App() {
         {/* Avatar */}
         <div style={{ position: "relative", width: 148, height: 148 }}>
           <div style={{
-            position: "absolute", inset: -3, borderRadius: "50%",
-            background: "conic-gradient(from 180deg, #ffffff18, #ffffff55, #ffffff18)",
-            filter: "blur(1px)",
-            animation: "spin 8s linear infinite",
+            position: "absolute", inset: -4, borderRadius: "50%",
+            background: "conic-gradient(from 180deg, #ff000040, #ff0000cc, #ff000040)",
+            filter: "blur(2px)",
+            animation: "spin 8s linear infinite, redPulse 1.6s ease-in-out infinite",
           }} />
           <img
             src={IMAGE_URL}
@@ -328,6 +328,10 @@ export default function App() {
         @keyframes spin {
           from { transform: rotate(0deg); }
           to   { transform: rotate(360deg); }
+        }
+        @keyframes redPulse {
+          0%, 100% { filter: blur(2px) drop-shadow(0 0 6px #ff0000aa); opacity: 0.7; }
+          50%       { filter: blur(3px) drop-shadow(0 0 22px #ff0000ff) drop-shadow(0 0 40px #ff000088); opacity: 1; }
         }
       `}</style>
     </div>
