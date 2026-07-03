@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 
-const TELEGRAM_URL = "https://t.me/serbiasim";
+const TELEGRAM_URL = "https://t.me/quietpsalm";
 const IMAGE_URL = "https://i.ibb.co/XqN6Q1d/IMG-6891.png";
 
 // Paste a YouTube video URL here to play audio on page load (leave empty for none)
