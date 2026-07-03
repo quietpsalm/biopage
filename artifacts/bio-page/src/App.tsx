@@ -264,14 +264,14 @@ export default function App() {
         <div style={{ position: "relative", width: 190, height: 190 }}>
           {/* Outer red spinning ring */}
           <div style={{
-            position: "absolute", inset: -6, borderRadius: "50%",
+            position: "absolute", inset: -6, borderRadius: "18px",
             background: "conic-gradient(from 180deg, #ff000020, #ff0000dd, #ff000020)",
             filter: "blur(3px)",
             animation: "spin 6s linear infinite, redPulse 1.6s ease-in-out infinite",
           }} />
           {/* Static dark border ring */}
           <div style={{
-            position: "absolute", inset: -2, borderRadius: "50%",
+            position: "absolute", inset: -2, borderRadius: "14px",
             border: "1px solid rgba(255,0,0,0.2)",
             boxShadow: "0 0 30px rgba(255,0,0,0.15), inset 0 0 30px rgba(0,0,0,0.6)",
           }} />
@@ -281,7 +281,7 @@ export default function App() {
             onLoad={() => setImgLoaded(true)}
             style={{
               position: "relative", width: 190, height: 190,
-              borderRadius: "50%", objectFit: "cover",
+              borderRadius: "12px", objectFit: "cover",
               border: "2px solid rgba(255,0,0,0.18)", display: "block",
               opacity: imgLoaded ? 1 : 0, transition: "opacity 0.7s ease",
               boxShadow: "0 0 60px rgba(255,0,0,0.12), 0 0 120px rgba(255,0,0,0.05)",
