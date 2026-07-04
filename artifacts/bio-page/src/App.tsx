@@ -91,8 +91,11 @@ function CSTFlipClockBar() {
 
   const colon: React.CSSProperties = {
     color: "rgba(255,255,255,0.9)",
-    fontSize: 16, fontWeight: 700, lineHeight: 1,
+    fontSize: 18, fontWeight: 700,
+    lineHeight: `${CARD_H}px`,
+    height: CARD_H,
     flexShrink: 0, width: 10, textAlign: "center",
+    display: "flex", alignItems: "center", justifyContent: "center",
   };
 
   return (
@@ -100,16 +103,9 @@ function CSTFlipClockBar() {
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 9999,
       background: "#cc0000",
       display: "flex", alignItems: "center", justifyContent: "center",
-      gap: 8,
-      padding: "4px 12px",
       height: 40,
     }}>
-      <span style={{
-        color: "rgba(255,255,255,0.75)", fontSize: 9, fontWeight: 700,
-        letterSpacing: "0.15em", textTransform: "uppercase",
-        fontFamily: "sans-serif", flexShrink: 0,
-      }}>CST</span>
-      <div style={{ display: "flex", alignItems: "center", gap: 3, flexShrink: 0 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 3 }}>
         <DigitPair value={time.hours} />
         <span style={colon}>:</span>
         <DigitPair value={time.minutes} />
