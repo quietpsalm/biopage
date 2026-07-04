@@ -15,6 +15,9 @@ const PAGE_TITLE = "dread";
 // Leave empty to keep the default
 const FAVICON_URL = "https://i.ibb.co/xqcpdmqJ/IMG-6909.jpg";
 
+// Location shown under the handle — leave empty to hide
+const LOCATION = "";
+
 function getYouTubeId(url: string): string | null {
   if (!url) return null;
   const match = url.match(
@@ -211,7 +214,18 @@ function YouTubeAudio({ videoId }: { videoId: string }) {
       src={src}
       allow="autoplay; encrypted-media"
       allowFullScreen={false}
-      style={{ position: "fixed", width: 1, height: 1, opacity: 0, pointerEvents: "none", border: "none" }}
+      tabIndex={-1}
+      aria-hidden="true"
+      style={{
+        position: "fixed",
+        top: -9999,
+        left: -9999,
+        width: 320,
+        height: 180,
+        opacity: 0.001,
+        pointerEvents: "none",
+        border: "none",
+      }}
     />
   );
 }
@@ -334,6 +348,21 @@ export default function App() {
               </svg>
             )}
           </div>
+          {LOCATION && (
+            <div style={{
+              marginTop: 10,
+              color: "rgba(255,255,255,0.3)",
+              fontSize: "clamp(11px, 2vw, 13px)",
+              letterSpacing: "0.14em",
+              fontFamily: "'FallingSkyBlk', sans-serif",
+              display: "flex", alignItems: "center", justifyContent: "center", gap: "5px",
+            }}>
+              <svg width="11" height="13" viewBox="0 0 24 28" fill="currentColor">
+                <path d="M12 0C7.589 0 4 3.589 4 8c0 5.5 8 20 8 20s8-14.5 8-20c0-4.411-3.589-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+              </svg>
+              {LOCATION}
+            </div>
+          )}
         </div>
 
         {/* Telegram button */}
