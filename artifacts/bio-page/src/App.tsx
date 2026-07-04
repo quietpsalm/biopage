@@ -98,9 +98,8 @@ function DigitPair({ value }: { value: string }) {
   );
 }
 
-function CSTFlipClockBar() {
+function CSTFlipClockBar({ visible }: { visible: boolean }) {
   const [time, setTime] = useState(getTime);
-  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     return startAccurateClock(() => setTime(getTime()));
@@ -117,56 +116,23 @@ function CSTFlipClockBar() {
   };
 
   return (
-    <>
-      {/* ── Main bar ── */}
-      <div style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 9999,
-        background: "#cc0000",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        height: 40,
-        transform: visible ? "translateY(0)" : "translateY(-100%)",
-        transition: "transform 0.3s ease",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <DigitPair value={time.hours} />
-          <span style={colon}>:</span>
-          <DigitPair value={time.minutes} />
-          <span style={colon}>:</span>
-          <DigitPair value={time.seconds} />
-        </div>
-
-        {/* Hide button */}
-        <button
-          onClick={() => setVisible(false)}
-          title="Hide clock"
-          style={{
-            position: "absolute", right: 10,
-            background: "rgba(0,0,0,0.25)", border: "none",
-            color: "#fff", borderRadius: 4, cursor: "pointer",
-            width: 22, height: 22,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 13, lineHeight: 1, padding: 0,
-          }}
-        >✕</button>
+    <div style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 9999,
+      background: "#cc0000",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      height: 40,
+      transform: visible ? "translateY(0)" : "translateY(-100%)",
+      transition: "transform 0.35s ease",
+      pointerEvents: visible ? "auto" : "none",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 3 }}>
+        <DigitPair value={time.hours} />
+        <span style={colon}>:</span>
+        <DigitPair value={time.minutes} />
+        <span style={colon}>:</span>
+        <DigitPair value={time.seconds} />
       </div>
-
-      {/* ── Show-again tab ── */}
-      <button
-        onClick={() => setVisible(true)}
-        title="Show clock"
-        style={{
-          position: "fixed", top: 0, left: "50%",
-          transform: `translate(-50%, ${visible ? "-100%" : "0%"})`,
-          transition: "transform 0.3s ease",
-          zIndex: 9998,
-          background: "#cc0000", border: "none", cursor: "pointer",
-          color: "#fff", fontSize: 11, fontWeight: 700,
-          padding: "3px 14px 4px",
-          borderRadius: "0 0 6px 6px",
-          letterSpacing: "0.05em",
-        }}
-      >▼ clock</button>
-    </>
+    </div>
   );
 }
 
@@ -407,6 +373,7 @@ export default function App() {
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
   const [introComplete, setIntroComplete] = useState(false);
+  const [clockVisible, setClockVisible] = useState(false);
 
   function handleCopyUsername() {
     const text = "@quietpsalm";
@@ -445,8 +412,8 @@ export default function App() {
   const videoId = getYouTubeId(YOUTUBE_URL);
 
   return (
-    <div style={{ minHeight: "100dvh", background: "#000", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", paddingTop: 52 }}>
-      <CSTFlipClockBar />
+    <div style={{ minHeight: "100dvh", background: "#000", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
+      <CSTFlipClockBar visible={clockVisible} />
       <FolderIntro onDone={() => setIntroComplete(true)} />
 
       {videoId && <YouTubeAudio videoId={videoId} />}
@@ -499,7 +466,11 @@ export default function App() {
 
         {/* Name / handle */}
         <div style={{ textAlign: "center" }}>
-          <div style={{ color: "#fff", fontSize: "clamp(22px, 5vw, 30px)", letterSpacing: "0.06em", fontFamily: "'QuorthonBlack', sans-serif", lineHeight: 1.1 }}>
+          <div
+            onMouseEnter={() => setClockVisible(true)}
+            onMouseLeave={() => setClockVisible(false)}
+            style={{ color: "#fff", fontSize: "clamp(22px, 5vw, 30px)", letterSpacing: "0.06em", fontFamily: "'QuorthonBlack', sans-serif", lineHeight: 1.1, cursor: "default" }}
+          >
             dread
           </div>
           <div
