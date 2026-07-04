@@ -140,6 +140,7 @@ function FolderIntro({ onDone }: { onDone: () => void }) {
   );
 }
 
+
 function ParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
