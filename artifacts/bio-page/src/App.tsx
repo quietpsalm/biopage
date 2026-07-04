@@ -265,6 +265,9 @@ export default function App() {
       link.href = FAVICON_URL;
       document.head.appendChild(link);
     }
+    const block = (e: Event) => e.preventDefault();
+    document.addEventListener("contextmenu", block);
+    return () => document.removeEventListener("contextmenu", block);
   }, []);
 
   const videoId = getYouTubeId(YOUTUBE_URL);
