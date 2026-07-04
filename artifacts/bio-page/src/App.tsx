@@ -33,9 +33,10 @@ function FlipCard({ digit, prev }: { digit: string; prev: string }) {
     background: "#1c1c1c",
     borderRadius: 4,
     display: "flex", alignItems: "center", justifyContent: "center",
+    paddingTop: 2,
     color: "#fff",
     fontSize: FONT, fontWeight: 700,
-    fontFamily: "'Courier New', Courier, monospace",
+    fontFamily: "Arial, Helvetica, sans-serif",
     lineHeight: 1,
     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.4)",
   };
