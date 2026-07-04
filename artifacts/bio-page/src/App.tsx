@@ -4,7 +4,7 @@ import { flushSync } from "react-dom";
 /* ─── CST Flip Clock Notification Bar ─────────────────────── */
 
 function getCST() {
-  const cst = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Chicago" }));
+  const cst = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Dubai" }));
   return {
     hours:   cst.getHours().toString().padStart(2, "0"),
     minutes: cst.getMinutes().toString().padStart(2, "0"),
