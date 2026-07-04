@@ -223,7 +223,7 @@ export default function App() {
   const [introComplete, setIntroComplete] = useState(false);
 
   function handleCopyUsername() {
-    const text = "@ft.paradise";
+    const text = "@quietpsalm";
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(() => {
         setCopied(true);
@@ -326,7 +326,7 @@ export default function App() {
               display: "flex", alignItems: "center", gap: "6px",
             }}
           >
-            {copied ? "copied!" : "@ft.paradise"}
+            {copied ? "copied!" : "@quietpsalm"}
             {!copied && (
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }}>
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
