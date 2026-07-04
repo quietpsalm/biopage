@@ -29,6 +29,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+img {
+  pointer-events: none;
+  draggable: false;
 }
 
 html, body, #root {

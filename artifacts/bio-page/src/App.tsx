@@ -16,7 +16,7 @@ const PAGE_TITLE = "dread";
 const FAVICON_URL = "https://i.ibb.co/xqcpdmqJ/IMG-6909.jpg";
 
 // Location shown under the handle — leave empty to hide
-const LOCATION = "";
+const LOCATION = "Belgrade, Serbia";
 
 function getYouTubeId(url: string): string | null {
   if (!url) return null;
@@ -308,6 +308,8 @@ export default function App() {
           <img
             src={IMAGE_URL}
             alt="profile"
+            draggable={false}
+            onDragStart={e => e.preventDefault()}
             onLoad={() => setImgLoaded(true)}
             style={{
               position: "relative", width: 190, height: 190,
