@@ -25,6 +25,14 @@
 }
 
 @font-face {
+  font-family: 'FamiliesRound';
+  src: url('/FamiliesRound-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
   font-family: 'FallingSkyBlk';
   src: url('/FallingSkyBlk.otf') format('opentype');
   font-weight: normal;

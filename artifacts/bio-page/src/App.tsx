@@ -376,6 +376,20 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const [introComplete, setIntroComplete] = useState(false);
   const [clockVisible, setClockVisible] = useState(false);
+  const [xmrPrice, setXmrPrice] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchXmr() {
+      try {
+        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=usd");
+        const data = await res.json();
+        setXmrPrice(data?.monero?.usd?.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) ?? null);
+      } catch {}
+    }
+    fetchXmr();
+    const id = setInterval(fetchXmr, 60000);
+    return () => clearInterval(id);
+  }, []);
 
   function handleCopyUsername() {
     const text = "@quietpsalm";
@@ -475,6 +489,26 @@ export default function App() {
           >
             dread
           </div>
+
+          {/* Monero price row */}
+          {xmrPrice && (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "7px", marginTop: "10px" }}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" fill="#fff">
+                <circle cx="128" cy="128" r="128" fill="none"/>
+                <path fill="#fff" d="M128 0C57.308 0 0 57.308 0 128s57.308 128 128 128 128-57.308 128-128S198.692 0 128 0zm0 34.84c51.456 0 94.273 35.936 105.658 84.028H22.342C33.727 70.776 76.544 34.84 128 34.84zM22.158 140.188h19.021l20.232-20.232v40.464h19.202v-59.86l20.22 20.22 20.22-20.22v59.86h19.204V120.056l20.06 19.97 20.222-20.22v40.614h19.202v-59.86l20.22 20.22 19.021 20.232h19.021c.605 3.857.922 7.816.922 11.85 0 51.434-41.713 93.16-93.147 93.16-51.434 0-93.16-41.726-93.16-93.16 0-4.033.317-7.993.922-11.85v-.624z"/>
+              </svg>
+              <span style={{
+                fontFamily: "'FamiliesRound', sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(13px, 2.5vw, 15px)",
+                color: "rgba(255,255,255,0.82)",
+                letterSpacing: "0.04em",
+              }}>
+                ${xmrPrice}
+              </span>
+            </div>
+          )}
+
           <div
             onClick={handleCopyUsername}
             title="Click to copy"
