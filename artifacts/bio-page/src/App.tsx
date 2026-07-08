@@ -379,16 +379,30 @@ export default function App() {
   const [xmrPrice, setXmrPrice] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchXmr() {
-      try {
-        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=usd");
-        const data = await res.json();
-        setXmrPrice(data?.monero?.usd?.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) ?? null);
-      } catch {}
+    let ws: WebSocket;
+    let reconnectTimer: ReturnType<typeof setTimeout>;
+
+    function connect() {
+      ws = new WebSocket("wss://stream.binance.com:9443/ws/xmrusdt@ticker");
+      ws.onmessage = (e) => {
+        try {
+          const d = JSON.parse(e.data);
+          const price = parseFloat(d.c);
+          if (!isNaN(price)) {
+            setXmrPrice(price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+          }
+        } catch {}
+      };
+      ws.onclose = () => {
+        reconnectTimer = setTimeout(connect, 3000);
+      };
     }
-    fetchXmr();
-    const id = setInterval(fetchXmr, 60000);
-    return () => clearInterval(id);
+
+    connect();
+    return () => {
+      clearTimeout(reconnectTimer);
+      ws?.close();
+    };
   }, []);
 
   function handleCopyUsername() {
